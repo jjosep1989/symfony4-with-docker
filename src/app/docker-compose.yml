@@ -1,0 +1,14 @@
+# This is the compose file for live development
+# All code is mounted from local file system and recompiled as needed
+version: '3.3'
+
+services:
+  symfony:
+    image: jjosep1989/symfony4    
+    volumes:
+      # application code
+      - ${PWD}:/var/www/html
+      - ${PWD}/configuration:/usr/local/etc/php/
+    ports:
+      - 3000:80
+    restart: "no"
