@@ -12,9 +12,7 @@ else
   # meteor npm install
 fi
 # todo: ensure we don't have an existing docker-compose
-cp ~/app/docker-compose.yml /var/www/html
-cp ~/app/symfony.sh /var/www/html/symfony
-cp ~/app/.gitignore /var/www/html/.gitignore
-#copiamos la configuracion de php a nuestro volumen
-cp ~/configuration/php.ini  /usr/local/etc/php/php.ini
+cp /app/docker-compose.yml /var/www/html/docker-compose.yml
+cp /app/symfony.sh /var/www/html/symfony
+# cp ~/app/.gitignore /var/www/html/.gitignore
 echo "ejecutar ./symfony para arrancar la aplicacion"
