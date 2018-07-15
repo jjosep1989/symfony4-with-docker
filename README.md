@@ -1,32 +1,19 @@
-# Symfony with docker
+# Symfony4 with docker
 
 Desarrollo de symfony con docker.
 
-## Usage
+## Uso
 
-install and run a new self-contained instance of VulcanJS (for example)
+Para crear desde un repositorio existente
 
 - `mkdir myProject && cd myProject`
-- `docker run --rm -v {$PWD}:/app assetsagacity/meteor-do init https://github.com/VulcanJS/Vulcan.git`
-- `./meteor`
+- ``docker run --rm -v $PWD:/var/www/html -u `id -u`:`id -g` jjosep1989/symfony4-with-docker init https://github.com/[your_repository].git``
+- `./symfony`
 
-Or create a new empty meteor project: `docker run --rm -v $PWD:/app assetsagacity/meteor-do init`
+Proyecto desde cero: ``docker run --rm -v $PWD:/var/www/html -u `id -u`:`id -g` jjosep1989/symfony4-with-docker init``
 
+Para los logs de php: `docker run --rm -v $PWD:/var/www/html -v $PWD/php-logs:php-logs jjosep1989/symfony4-with-docker init`
 
+Se puede ejecutar cualquier comando hacia el contenedor de symfony usando `./symfony`
 
-And perform standard meteor operations using `./meteor`, for example:
-
-- `./meteor` runs the project
-- `./meteor npm install --save somePackage`
-- `./meteor shell`
-
-
-
-## Install
-
-1. install [docker](https://docs.docker.com/engine/installation/)
-and [docker-compose](https://docs.docker.com/compose/install/)
-1. create a folder for your new project and go into it
-1. init: `docker run --rm -v ${PWD}:/app assetsagacity/meteor-do init`
-1. now run your server: `./meteor`
-1. you can access it at http://localhost:3000/
+Se usa el puerto 80 para acceder a la aplicacion

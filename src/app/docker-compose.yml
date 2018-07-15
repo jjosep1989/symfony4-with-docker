@@ -4,11 +4,11 @@ version: '3.3'
 
 services:
   symfony:
-    image: symfony
+    image: jjosep1989/symfony4-with-docker
     volumes:
       # application code
       - ${PWD}:/var/www/html
-      # - ${PWD}/php-logs:/home/root/php-logs
+      - ${PWD}/php-logs:/php-logs
     ports:
       - 80:80
     restart: "no"
