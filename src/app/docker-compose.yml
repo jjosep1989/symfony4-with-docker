@@ -3,12 +3,26 @@
 version: '3.3'
 
 services:
-  symfony:
-    image: jjosep1989/symfony4-with-docker
+  web-server:
+    container_name: symfony4.1-apache2.4-php7.1
+    image: jjosep1989/symfony:4.1-alpine
     volumes:
-      # application code
-      - ${PWD}:/var/www/html
-      - ${PWD}/php-logs:/php-logs
+      - ${PWD}:/app
     ports:
-      - 80:80
+      - 8000:80
+    links:
+      - database
+    restart: "no"          
+  database:
+    container_name: symfony4.1-mariadb
+    image: bianjp/mariadb-alpine
+    ports:
+      - 3306:3306
+    volumes:
+      - ${PWD}/db_data:/var/lib/mysql    
+    environment:
+      MYSQL_ROOT_PASSWORD : root
+      MYSQL_USER : maria
+      MYSQL_PASSWORD : maria
+      MYSQL_DATABASE: test
     restart: "no"
