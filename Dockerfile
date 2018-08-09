@@ -1,20 +1,30 @@
-FROM webdevops/php-apache-dev:alpine-php7
+FROM petronetto/php7-alpine
 
-#creamos usuario que tenga permisos para poder manejar el fichero init
-#m->crea directorio home, U->grupo de mismo nombre que el usuario, d ->directorio home
-# RUN useradd -mUd /home/symfony symfony
-# RUN usermod -a -G www-data symfony
-# RUN chown -Rh symfony /usr/local
+LABEL maintainer="Josep Pino"
 
+USER root
 
-COPY ./src/bin /usr/local/bin
-COPY ./src/app  /src/app
+RUN apk --update upgrade --no-cache; \
+    apk add --no-cache git unzip; \    
+    echo 'extension=iconv.so' > /etc/php7/conf.d/iconv.ini; \
+    apk del .build-deps; \
+    rm -rf /var/cache/apk/*;    
 
-EXPOSE 80
+RUN addgroup -g 1001 -S symfony
+RUN adduser -u 1001 -D -S -h /home/symfony -s /sbin/nologin -G symfony symfony
+
+COPY src/bin /usr/bin
+COPY src/app /home/symfony
+
+RUN chown -Rh symfony:symfony /usr/bin
+RUN chown -Rh symfony:symfony /app
+
+USER symfony
+
 WORKDIR "/app"
 
-# ubicacion del codigo de la aplicacion
+# EXPOSE 80
+
 VOLUME "/app"
 
-#comandos que se ejecutan al inicio
-# CMD [ "/usr/local/bin/server" ]
+CMD [ "/usr/sbin/php-fpm7" ]

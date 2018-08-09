@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 # /usr/sbin/apache2ctl -D FOREGROUND
-apache2ctl -D FOREGROUND
+# apache2ctl -D FOREGROUND
+echo "hola";
