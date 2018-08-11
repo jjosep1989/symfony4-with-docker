@@ -1,8 +1,10 @@
 #!/bin/sh
-
+mkdir /app/symfony-app;
+cd /app/symfony-app;
 if [ -z "$1" ]; then
   echo "**Creacion de proyecto nuevo de symfony"
-  composer create-project symfony/skeleton my-project
+  composer create-project symfony/skeleton .
+  composer require server --dev
 else
   echo "**Clonando desde repositorio $1"
   git clone $1 /var/www/html
