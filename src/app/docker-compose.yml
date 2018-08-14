@@ -3,13 +3,13 @@
 version: '3.3'
 
 services:
-  web-server:
-    container_name: symfony4.1-apache2.4-php7.1
+  php:
+    container_name: symfony4.1-php7.1
     image: jjosep1989/symfony:4.1-alpine
     volumes:
       - ${PWD}:/app
     ports:
-      - 8000:80
+      - 8000:8000
     links:
       - database
     restart: "no"          

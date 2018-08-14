@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 # /usr/sbin/apache2ctl -D FOREGROUND
 # apache2ctl -D FOREGROUND
-echo "hola";
+cd /app/symfony-app/
+php bin/console server:start
