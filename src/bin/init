@@ -1,7 +1,6 @@
 #!/bin/sh
-mkdir symfony-app-2;
-mkdir /my-app/symfony-app;
-cd /my-app/symfony-app;
+mkdir /app/symfony-app;
+cd /app/symfony-app;
 if [ -z "$1" ]; then
   echo "**Creacion de proyecto nuevo de symfony"
   composer create-project symfony/skeleton .
@@ -15,9 +14,9 @@ else
   # meteor npm install
 fi
 
-cp /home/symfony/docker-compose.yml /my-app/docker-compose.yml
-cp /home/symfony/symfony.sh /my-app/symfony
+cp /home/symfony/docker-compose.yml /app/docker-compose.yml
+cp /home/symfony/symfony.sh /app/symfony
 
-# chown -R application:application /my-app;
-# cp ~/my-app/.gitignore /var/www/html/.gitignore
+# chown -R application:application /app;
+# cp ~/app/.gitignore /var/www/html/.gitignore
 echo "ejecutar ./symfony para arrancar la aplicacion"
